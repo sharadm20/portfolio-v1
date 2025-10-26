@@ -5,23 +5,7 @@ import Skills from './components/Skills';
 import Certifications from './components/Certifications';
 import ResumeEditor from './components/ResumeEditor';
 import './App.css';
-
-// Define our data types
-interface Skill {
-  name: string;
-  level: number; // 0-100 percentage
-  category: string;
-}
-
-interface Certification {
-  id: number;
-  name: string;
-  issuer: string;
-  date: string;
-  expiration?: string;
-  credentialId?: string;
-  credentialUrl?: string;
-}
+import type { Skill, Certification } from './types';
 
 // Sample data - in a real app, this would come from state/props or an API
 const skillsData: Skill[] = [

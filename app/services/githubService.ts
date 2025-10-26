@@ -11,20 +11,35 @@ interface GitHubRepo {
   stargazers_count: number;
   forks_count: number;
   updated_at: string;
+  fork?: boolean;
+  archived?: boolean;
 }
 
 export const fetchGitHubRepos = async (username: string): Promise<Project[]> => {
   try {
-    const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&direction=desc`);
-    
+    const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&direction=desc&per_page=10`);
+
     if (!response.ok) {
       throw new Error(`GitHub API request failed with status ${response.status}`);
     }
-    
+
     const repos: GitHubRepo[] = await response.json();
-    
+
+    // Sort repos by stars, then by recent activity, and limit to 3-4
+    const sortedRepos = repos
+      .filter(repo => !repo.fork && !repo.archived) // Exclude forks and archived repos
+      .sort((a, b) => {
+        // Primary: stars
+        if (b.stargazers_count !== a.stargazers_count) {
+          return b.stargazers_count - a.stargazers_count;
+        }
+        // Secondary: recent activity (updated_at)
+        return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
+      })
+      .slice(0, 4); // Limit to 4 repos
+
     // Process the repos into the format expected by the Projects component
-    return repos.map(repo => ({
+    return sortedRepos.map(repo => ({
       id: repo.id,
       title: repo.name,
       description: repo.description || 'No description provided',
