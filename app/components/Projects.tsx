@@ -85,142 +85,43 @@ const Projects: React.FC = () => {
   }
 
   return (
-    <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-            Featured Projects
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            A showcase of my recent work and contributions
-          </p>
-        </motion.div>
+    <section className="px-8 py-20">
+      <div className="grid grid-cols-4 gap-6 max-w-7xl mx-auto">
+        {/* Studio 74 */}
+        <div className="bg-slate-900/50 backdrop-blur border border-slate-800 p-8 rounded-lg hover:border-blue-500 transition-all cursor-pointer group">
+          <div className="text-4xl font-bold mb-16 text-blue-400 group-hover:scale-110 transition-transform">74</div>
+          <div>
+            <p className="text-xs tracking-widest mb-1">STUDIO 74</p>
+            <div className="w-4 h-0.5 bg-blue-400"></div>
+          </div>
+        </div>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {projects.map((project, index) => (
-            <motion.div
-              key={`${project.source}-${project.id}`}
-              variants={itemVariants}
-              className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-500"
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Gradient overlay on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        {/* Goethe */}
+        <div className="bg-slate-900/50 backdrop-blur border border-slate-800 p-8 rounded-lg hover:border-blue-500 transition-all cursor-pointer group">
+          <div className="text-5xl font-bold mb-16 text-blue-300 group-hover:scale-110 transition-transform">gö</div>
+          <div>
+            <p className="text-xs tracking-widest mb-1">GOETHE</p>
+            <div className="w-4 h-0.5 bg-blue-400"></div>
+          </div>
+        </div>
 
-              <div className="relative p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mr-3">
-                      <span className="text-white text-lg">
-                        {project.source === 'github' ? '🐱' : '🔷'}
-                      </span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                        {project.title}
-                      </h3>
-                      <span className="text-sm text-gray-500 dark:text-gray-400 capitalize">
-                        {project.source}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+        {/* Lumex Vol.1 */}
+        <div className="bg-slate-900/50 backdrop-blur border border-slate-800 p-8 rounded-lg hover:border-blue-500 transition-all cursor-pointer overflow-hidden group">
+          <div className="bg-gradient-to-b from-orange-400 via-blue-400 to-blue-600 h-48 -mx-8 -mt-8 mb-4 group-hover:scale-105 transition-transform"></div>
+          <div>
+            <p className="text-xs tracking-widest mb-1">LUMEX VOL.1</p>
+            <div className="w-4 h-0.5 bg-blue-400"></div>
+          </div>
+        </div>
 
-                <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 leading-relaxed">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.slice(0, 3).map((tech, index) => (
-                    <motion.span
-                      key={index}
-                      className="px-3 py-1 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-800 dark:text-indigo-200 text-sm font-medium rounded-full border border-indigo-200 dark:border-indigo-800"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
-                  {project.technologies.length > 3 && (
-                    <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-sm rounded-full">
-                      +{project.technologies.length - 3}
-                    </span>
-                  )}
-                </div>
-
-                <div className="flex gap-4">
-                  {project.githubUrl && (
-                    <motion.a
-                      href={project.githubUrl}
-                      className="flex items-center px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors group/link"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span className="mr-2">🐙</span>
-                      <span className="font-medium">Code</span>
-                    </motion.a>
-                  )}
-                  {project.gitlabUrl && (
-                    <motion.a
-                      href={project.gitlabUrl}
-                      className="flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors group/link"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span className="mr-2">🔷</span>
-                      <span className="font-medium">GitLab</span>
-                    </motion.a>
-                  )}
-                  {project.demoUrl && (
-                    <motion.a
-                      href={project.demoUrl}
-                      className="flex items-center px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg hover:from-green-600 hover:to-emerald-600 transition-all group/link"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span className="mr-2">🚀</span>
-                      <span className="font-medium">Live Demo</span>
-                    </motion.a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {projects.length === 0 && (
-          <motion.div
-            className="text-center py-16"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 rounded-full flex items-center justify-center">
-              <span className="text-4xl">📁</span>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No Projects Found</h3>
-            <p className="text-gray-600 dark:text-gray-400">Please check your GitHub/GitLab username configuration.</p>
-          </motion.div>
-        )}
+        {/* Port 3.0 */}
+        <div className="bg-slate-900/50 backdrop-blur border border-slate-800 p-8 rounded-lg hover:border-purple-500 transition-all cursor-pointer group">
+          <div className="text-4xl font-bold mb-16 text-purple-400 group-hover:scale-110 transition-transform">⟡</div>
+          <div>
+            <p className="text-xs tracking-widest mb-1">PORT 3.0</p>
+            <div className="w-4 h-0.5 bg-purple-400"></div>
+          </div>
+        </div>
       </div>
     </section>
   );
