@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useProjects } from '../contexts/ProjectsContext';
 import { Project } from '../types';
+import { FiFolder } from 'react-icons/fi';
 
 const Projects: React.FC = () => {
   const { projects, loading, error } = useProjects();
@@ -70,7 +71,7 @@ const Projects: React.FC = () => {
 
   return (
     <section id="projects" className="py-20 bg-[#0f1724] px-4 sm:px-6">
-      <div className="container mx-auto max-w-6xl">
+      <div className="container container-flex">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -79,9 +80,7 @@ const Projects: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-[#e6eef6] flex items-center justify-center">
-            <svg className="w-5 h-5 mr-3 text-[#a7f3d0] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-            </svg>
+            <FiFolder className="w-4 h-4 mr-3 text-[#a7f3d0] flex-shrink-0" />
             My Projects
           </h2>
           <div className="w-20 h-1 bg-[#a7f3d0] mx-auto mb-6"></div>
@@ -116,12 +115,12 @@ const Projects: React.FC = () => {
               <motion.div
                 key={project.id}
                 variants={itemVariants}
-                className="card rounded-xl overflow-hidden"
+                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-bold text-[#e6eef6]">{project.title}</h3>
-                    <div className="bg-[rgba(167,243,208,0.1)] text-[#a7f3d0] text-xs px-2 py-1 rounded">
+                    <div className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs px-2 py-1 rounded">
                       {project.source}
                     </div>
                   </div>
@@ -130,7 +129,7 @@ const Projects: React.FC = () => {
                     {project.technologies.map((tech, techIndex) => (
                       <span 
                         key={techIndex} 
-                        className="text-xs bg-[rgba(255,255,255,0.03)] text-[#9aa4b2] px-3 py-1 rounded-full"
+                        className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full"
                       >
                         {tech}
                       </span>
@@ -142,7 +141,7 @@ const Projects: React.FC = () => {
                         href={project.githubUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-[#a7f3d0] hover:underline text-sm font-bold"
+                        className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-bold"
                       >
                         View Code
                       </a>
@@ -152,7 +151,7 @@ const Projects: React.FC = () => {
                         href={project.demoUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-[#a7f3d0] hover:underline text-sm font-bold"
+                        className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-bold"
                       >
                         Live Demo
                       </a>

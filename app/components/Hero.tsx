@@ -22,8 +22,7 @@ const Hero = () => {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.5,
-        ease: 'easeOut'
+        duration: 0.5
       }
     }
   };
@@ -104,30 +103,34 @@ const Hero = () => {
                 {/* Profile circle */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-white dark:bg-gray-800 rounded-full w-56 h-56 md:w-72 md:h-72 flex items-center justify-center border-4 border-white shadow-xl">
-                    <div className="bg-gray-200 border-2 border-dashed rounded-xl w-48 h-48 md:w-64 md:h-64 rounded-full" />
+                    <div className="bg-gray-200 dark:bg-gray-700 border-2 border-dashed rounded-xl w-48 h-48 md:w-64 md:h-64 rounded-full flex items-center justify-center text-gray-500 dark:text-gray-400 text-sm font-medium">
+                      Profile Image
+                    </div>
                   </div>
                 </div>
               </div>
               
-              {/* Decorative elements */}
-              <motion.div 
-                className="absolute -top-6 -right-6 w-16 h-16 rounded-full border-4 border-blue-500/30"
-                animate={{ 
-                  y: [0, -10, 0],
+              {/* Decorative animated elements */}
+              <motion.div
+                className="absolute -top-8 -right-8 w-20 h-20 rounded-full border-4 border-blue-500/30"
+                animate={{
+                  scale: [1, 1.1, 1],
+                  rotate: [0, 5, 0, -5, 0],
                 }}
-                transition={{ 
-                  duration: 3,
+                transition={{
+                  duration: 4,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
               />
-              <motion.div 
-                className="absolute -bottom-6 -left-6 w-12 h-12 rounded-full bg-blue-500/30"
-                animate={{ 
-                  y: [0, 10, 0],
+              <motion.div
+                className="absolute -bottom-8 -left-8 w-16 h-16 rounded-full bg-gradient-to-r from-purple-500/30 to-blue-500/30"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  y: [0, 15, 0],
                 }}
-                transition={{ 
-                  duration: 3.5,
+                transition={{
+                  duration: 5,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}

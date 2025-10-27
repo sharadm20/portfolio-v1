@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FiAward } from 'react-icons/fi';
 
 interface Certification {
   id: number;
@@ -29,9 +30,7 @@ const Certifications: React.FC<CertificationsProps> = ({ certifications }) => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-[#e6eef6] flex items-center justify-center">
-            <svg className="w-5 h-5 mr-3 text-[#a7f3d0] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-            </svg>
+            <FiAward className="w-3 h-3 mr-3 text-[#a7f3d0] flex-shrink-0" />
             Certifications
           </h2>
           <div className="w-20 h-1 bg-[#a7f3d0] mx-auto mb-6"></div>
@@ -48,11 +47,11 @@ const Certifications: React.FC<CertificationsProps> = ({ certifications }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="card rounded-xl p-6"
+              className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               <div className="flex items-start mb-4">
-                <div className="bg-[rgba(167,243,208,0.1)] p-2 rounded-lg mr-4 flex-shrink-0">
-                  <svg className="w-4 h-4 text-[#a7f3d0] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-lg mr-4 flex-shrink-0">
+                  <svg className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                   </svg>
                 </div>
@@ -61,7 +60,7 @@ const Certifications: React.FC<CertificationsProps> = ({ certifications }) => {
                   <p className="text-[#9aa4b2]">{cert.issuer}</p>
                 </div>
               </div>
-              <div className="flex justify-between text-sm text-[#9aa4b2] mt-4 pt-4 border-t border-[rgba(255,255,255,0.06)]">
+              <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                 <span>{cert.date}</span>
                 {cert.expiration && <span>Expires: {cert.expiration}</span>}
               </div>
