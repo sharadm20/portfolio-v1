@@ -1,6 +1,5 @@
 {
   "tools": {
-    "core": ["run_shell_command(git)", "run_shell_command(npm)"],
     "shell": {
       "enableInteractiveShell": true,
       "showColor": true,
