@@ -1,70 +1,56 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FiCode } from 'react-icons/fi';
+import { motion } from "framer-motion";
 
-interface Skill {
-  name: string;
-  level: number; // 0-100 percentage
-  category: string;
-}
+const skills = [
+  { name: "React", level: 95 },
+  { name: "TypeScript", level: 90 },
+  { name: "Node.js", level: 85 },
+  { name: "Python", level: 80 },
+  { name: "AI/ML", level: 75 },
+  { name: "AWS", level: 85 },
+];
 
-interface SkillsProps {
-  skills: Skill[];
-}
-
-const Skills: React.FC<SkillsProps> = ({ skills }) => {
-  // Group skills by category
-  const categories = ['languages', 'frontend', 'backend', 'devops', 'tools'];
-  const categorizedSkills = categories.map(category => ({
-    category,
-    skills: skills.filter(skill => skill.category.toLowerCase() === category.toLowerCase())
-  })).filter(category => category.skills.length > 0); // Only include categories that have skills
-
+export function Skills() {
   return (
-    <section id="skills" className="py-20 bg-[#0f1724] px-4 sm:px-6">
-      <div className="container mx-auto max-w-6xl">
+    <section id="skills" className="py-20 bg-muted/30">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8 }}
+          className="max-w-4xl mx-auto text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#e6eef6] flex items-center justify-center">
-            <FiCode className="w-3 h-3 mr-3 text-[#ffd6e0] flex-shrink-0" />
-            My Skills
-          </h2>
-          <div className="w-20 h-1 bg-[#ffd6e0] mx-auto mt-4"></div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Skills</h2>
+          <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
+          <p className="text-lg text-muted-foreground">
+            Technologies and tools I use to build modern applications
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categorizedSkills.map((categoryGroup, index) => (
-            <motion.div
-              key={categoryGroup.category}
-              initial={{ opacity: 0, y: 30 }}
+        <div className="max-w-3xl mx-auto">
+          {skills.map((skill, index) => (
+            <motion.div 
+              key={index}
+              className="mb-8"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
-              <h3 className="text-xl font-bold mb-6 text-[#e6eef6] capitalize">
-                {categoryGroup.category}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {categoryGroup.skills.map((skill, skillIndex) => (
-                  <motion.span
-                    key={skill.name}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: 0.2 + skillIndex * 0.1 }}
-                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium"
-                  >
-                    {skill.name}
-                  </motion.span>
-                ))}
+              <div className="flex justify-between mb-2">
+                <span className="font-medium">{skill.name}</span>
+                <span>{skill.level}%</span>
+              </div>
+              <div className="w-full bg-secondary rounded-full h-2.5">
+                <motion.div
+                  className="bg-primary h-2.5 rounded-full"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${skill.level}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: index * 0.1 }}
+                />
               </div>
             </motion.div>
           ))}
@@ -72,6 +58,4 @@ const Skills: React.FC<SkillsProps> = ({ skills }) => {
       </div>
     </section>
   );
-};
-
-export default Skills;
+}
