@@ -1,27 +1,25 @@
-'use client';
-
-import { Navigation } from '@/app/components/navigation';
-import { Hero } from '@/app/components/Hero';
-import { About } from '@/app/components/about';
-import { Skills } from '@/app/components/Skills';
-import { Projects } from '@/app/components/Projects';
-import { Contact } from '@/app/components/Contact';
-import { Footer } from '@/app/components/Footer';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import About from './components/About';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Certifications from './components/Certifications';
+import Experience from './components/Experience';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navigation />
-      
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-      </main>
-      
+    <main className="min-h-screen">
+      <Navbar />
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <Certifications />
+      <Experience />
+      <Contact />
       <Footer />
-    </div>
+    </main>
   );
 }
