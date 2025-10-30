@@ -1,13 +1,6 @@
 'use client';
 
-<<<<<<< Updated upstream
 import { motion } from 'framer-motion';
-=======
-import { motion } from "framer-motion";
-import { Section, SectionHeader } from "@/app/components/ui/section";
-import { Text } from "@/app/components/ui/typography";
-import { progressBar, staggerItem } from "@/app/components/ui/animations";
->>>>>>> Stashed changes
 
 interface Skill {
   name: string;
@@ -25,7 +18,6 @@ const skills: Skill[] = [
 
 export default function Skills() {
   return (
-<<<<<<< Updated upstream
     <section id="skills" className="section-container bg-muted/50">
       <motion.div
         initial={{ opacity: 0 }}
@@ -63,42 +55,5 @@ export default function Skills() {
         </div>
       </motion.div>
     </section>
-=======
-    <Section id="skills" background="muted">
-      <SectionHeader
-        title="Skills"
-        subtitle="Technologies and tools I use to build modern applications"
-      />
-
-      <div className="max-w-3xl mx-auto">
-        {skills.map((skill, index) => (
-          <motion.div
-            key={index}
-            className="mb-8"
-            variants={staggerItem}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            custom={index}
-          >
-            <div className="flex justify-between mb-2">
-              <Text weight="medium">{skill.name}</Text>
-              <Text>{skill.level}%</Text>
-            </div>
-            <div className="w-full bg-secondary rounded-full h-2.5">
-              <motion.div
-                className="bg-primary h-2.5 rounded-full"
-                variants={progressBar}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                custom={`${skill.level}%`}
-              />
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </Section>
->>>>>>> Stashed changes
   );
 }

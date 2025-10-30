@@ -1,18 +1,8 @@
 'use client';
 
-<<<<<<< Updated upstream
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { ArrowTopRightOnSquareIcon, CodeBracketIcon, StarIcon } from '@heroicons/react/24/outline';
-=======
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { Github, ExternalLink } from "lucide-react";
-import { Section, SectionHeader } from "@/app/components/ui/section";
-import { Text } from "@/app/components/ui/typography";
-import { Card, CardContent } from "@/app/components/ui/Card";
-import { staggerContainer, staggerItem } from "@/app/components/ui/animations";
->>>>>>> Stashed changes
 
 interface Project {
   id: number;
@@ -24,6 +14,8 @@ interface Project {
   language: string;
   topics: string[];
   updated_at: string;
+  fork: boolean;
+  archived: boolean;
 }
 
 interface ProjectCardProps {
@@ -33,7 +25,6 @@ interface ProjectCardProps {
 
 function ProjectCard({ project, index }: ProjectCardProps) {
   return (
-<<<<<<< Updated upstream
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -144,7 +135,7 @@ export default function Projects() {
 
       // Filter out forks and archived repos, sort by stars
       const filteredProjects = data
-        .filter((repo: Project) => !repo.archived)
+        .filter((repo: Project) => !repo.fork && !repo.archived)
         .sort((a: Project, b: Project) => b.stargazers_count - a.stargazers_count)
         .slice(0, 6); // Get top 6 projects
 
@@ -157,7 +148,7 @@ export default function Projects() {
   };
 
   // Get unique languages for filter
-  const languages = ['all', ...new Set(projects.map(p => p.language).filter(Boolean))];
+  const languages = ['all', ...Array.from(new Set(projects.map(p => p.language).filter(Boolean)))];
 
   const filteredProjects = filter === 'all' 
     ? projects 
@@ -259,68 +250,5 @@ export default function Projects() {
         )}
       </motion.div>
     </section>
-=======
-    <Section id="projects">
-      <SectionHeader
-        title="Projects"
-        subtitle="Some of my recent work and open-source contributions"
-      />
-
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.id}
-            variants={staggerItem}
-            custom={index}
-          >
-            <Card className="h-full hover:shadow-lg transition-shadow">
-              <CardContent>
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <Text variant="muted" className="mb-4">
-                  {project.description}
-                </Text>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="text-xs bg-primary/10 text-primary px-2 py-1 rounded"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex space-x-3">
-                  <Link
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    <Github className="w-4 h-4 mr-1" /> Code
-                  </Link>
-                  <Link
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    <ExternalLink className="w-4 h-4 mr-1" /> Live
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
-      </motion.div>
-    </Section>
->>>>>>> Stashed changes
   );
 }
